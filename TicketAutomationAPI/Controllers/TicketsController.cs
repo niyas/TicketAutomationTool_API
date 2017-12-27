@@ -40,5 +40,21 @@ namespace TicketAutomationAPI.Controllers
                 return "{success:'ticket updated successfully'}";
             }
         }
+
+        [Route("api/tickets/finalize")]
+        [HttpPatch]
+        public string finalize([FromBody]IEnumerable<IncidentManagement_Data> tickets)
+        {
+            foreach(IncidentManagement_Data ticket in tickets)
+            {
+                using (TicketAutomationEntities entities = new TicketAutomationEntities())
+                {
+                    var entity = entities.IncidentManagement_Data.FirstOrDefault(e =>e.PayrollDataId == ticket.PayrollDataId);
+                    entity.Finalized = true;
+                    entities.SaveChanges();
+                }
+            }
+            return "{success:'ticket updated successfully'}";
+        }
     }
 }
