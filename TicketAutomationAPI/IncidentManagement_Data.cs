@@ -14,7 +14,7 @@ namespace TicketAutomationAPI
     
     public partial class IncidentManagement_Data
     {
-        public decimal PayrollDataId { get; set; }
+        public int RegID { get; set; }
         public string IncidentId { get; set; }
         public string NotificationText { get; set; }
         public Nullable<int> SeverityNumber { get; set; }
@@ -26,9 +26,6 @@ namespace TicketAutomationAPI
         public string ETR { get; set; }
         public string Priority { get; set; }
         public Nullable<System.DateTime> CreatedDateTime { get; set; }
-        public Nullable<System.DateTime> UpdatedDateTime { get; set; }
-        public string UpdatedIP { get; set; }
-        public string HashBytes { get; set; }
-        public Nullable<bool> Finalized { get; set; }
+        public Nullable<System.DateTime> MergeDateTime { get; set; }
     }
 }

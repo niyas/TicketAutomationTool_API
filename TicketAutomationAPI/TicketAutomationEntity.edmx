@@ -7,27 +7,6 @@
     <Schema Namespace="TicketAutomationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="IncidentManagement_Data">
           <Key>
-            <PropertyRef Name="PayrollDataId" />
-          </Key>
-          <Property Name="PayrollDataId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IncidentId" Type="varchar" MaxLength="50" />
-          <Property Name="NotificationText" Type="varchar(max)" />
-          <Property Name="SeverityNumber" Type="int" />
-          <Property Name="Status" Type="varchar" MaxLength="150" />
-          <Property Name="SuspendReason" Type="varchar" MaxLength="150" />
-          <Property Name="Assignee" Type="varchar" MaxLength="150" />
-          <Property Name="AssigneeGroup" Type="varchar" MaxLength="150" />
-          <Property Name="StatusTracking" Type="varchar(max)" />
-          <Property Name="ETR" Type="varchar" MaxLength="150" />
-          <Property Name="Priority" Type="varchar" MaxLength="50" />
-          <Property Name="CreatedDateTime" Type="datetime" />
-          <Property Name="UpdatedDateTime" Type="datetime" />
-          <Property Name="UpdatedIP" Type="varchar" MaxLength="50" />
-          <Property Name="HashBytes" Type="varchar" MaxLength="300" />
-          <Property Name="Finalized" Type="bit" />
-        </EntityType>
-        <EntityType Name="IncidentManagement_WeeklyData">
-          <Key>
             <PropertyRef Name="RegID" />
           </Key>
           <Property Name="RegID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
@@ -44,6 +23,27 @@
           <Property Name="CreatedDateTime" Type="datetime" />
           <Property Name="MergeDateTime" Type="datetime" />
         </EntityType>
+        <EntityType Name="IncidentManagement_WeeklyData">
+          <Key>
+            <PropertyRef Name="PayrollDataId" />
+          </Key>
+          <Property Name="PayrollDataId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IncidentId" Type="varchar" MaxLength="50" />
+          <Property Name="NotificationText" Type="varchar(max)" />
+          <Property Name="SeverityNumber" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="150" />
+          <Property Name="SuspendReason" Type="varchar" MaxLength="150" />
+          <Property Name="Assignee" Type="varchar" MaxLength="150" />
+          <Property Name="AssigneeGroup" Type="varchar" MaxLength="150" />
+          <Property Name="StatusTracking" Type="varchar(max)" />
+          <Property Name="ETR" Type="varchar" MaxLength="150" />
+          <Property Name="Priority" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="UpdatedIP" Type="varchar" MaxLength="50" />
+          <Property Name="HashBytes" Type="varbinary" MaxLength="300" />
+          <Property Name="Finalized" Type="bit" />
+        </EntityType>
         <EntityContainer Name="TicketAutomationModelStoreContainer">
           <EntitySet Name="IncidentManagement_Data" EntityType="Self.IncidentManagement_Data" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IncidentManagement_WeeklyData" EntityType="Self.IncidentManagement_WeeklyData" Schema="dbo" store:Type="Tables" />
@@ -52,28 +52,11 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TicketAutomationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TicketAutomationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="IncidentManagement_Data" EntityType="TicketAutomationModel.IncidentManagement_Data" />
+          <EntitySet Name="IncidentManagement_WeeklyData" EntityType="TicketAutomationModel.IncidentManagement_WeeklyData" />
+        </EntityContainer>
         <EntityType Name="IncidentManagement_Data">
-          <Key>
-            <PropertyRef Name="PayrollDataId" />
-          </Key>
-          <Property Name="PayrollDataId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IncidentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NotificationText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="SeverityNumber" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="SuspendReason" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Assignee" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="AssigneeGroup" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="StatusTracking" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ETR" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Priority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HashBytes" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="Finalized" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="IncidentManagement_WeeklyData">
           <Key>
             <PropertyRef Name="RegID" />
           </Key>
@@ -91,10 +74,27 @@
           <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
           <Property Name="MergeDateTime" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityContainer Name="TicketAutomationEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="IncidentManagement_Data" EntityType="Self.IncidentManagement_Data" />
-          <EntitySet Name="IncidentManagement_WeeklyData" EntityType="Self.IncidentManagement_WeeklyData" />
-        </EntityContainer>
+        <EntityType Name="IncidentManagement_WeeklyData">
+          <Key>
+            <PropertyRef Name="PayrollDataId" />
+          </Key>
+          <Property Name="PayrollDataId" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IncidentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NotificationText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SeverityNumber" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SuspendReason" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Assignee" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AssigneeGroup" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="StatusTracking" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ETR" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Priority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HashBytes" Type="Binary" MaxLength="300" FixedLength="false" />
+          <Property Name="Finalized" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -104,41 +104,41 @@
           <EntitySetMapping Name="IncidentManagement_Data">
             <EntityTypeMapping TypeName="TicketAutomationModel.IncidentManagement_Data">
               <MappingFragment StoreEntitySet="IncidentManagement_Data">
-                <ScalarProperty Name="Finalized" ColumnName="Finalized" />
-                <ScalarProperty Name="HashBytes" ColumnName="HashBytes" />
-                <ScalarProperty Name="PayrollDataId" ColumnName="PayrollDataId" />
-                <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
-                <ScalarProperty Name="NotificationText" ColumnName="NotificationText" />
-                <ScalarProperty Name="SeverityNumber" ColumnName="SeverityNumber" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SuspendReason" ColumnName="SuspendReason" />
-                <ScalarProperty Name="Assignee" ColumnName="Assignee" />
-                <ScalarProperty Name="AssigneeGroup" ColumnName="AssigneeGroup" />
-                <ScalarProperty Name="StatusTracking" ColumnName="StatusTracking" />
-                <ScalarProperty Name="ETR" ColumnName="ETR" />
-                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="MergeDateTime" ColumnName="MergeDateTime" />
                 <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
-                <ScalarProperty Name="UpdatedIP" ColumnName="UpdatedIP" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="ETR" ColumnName="ETR" />
+                <ScalarProperty Name="StatusTracking" ColumnName="StatusTracking" />
+                <ScalarProperty Name="AssigneeGroup" ColumnName="AssigneeGroup" />
+                <ScalarProperty Name="Assignee" ColumnName="Assignee" />
+                <ScalarProperty Name="SuspendReason" ColumnName="SuspendReason" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SeverityNumber" ColumnName="SeverityNumber" />
+                <ScalarProperty Name="NotificationText" ColumnName="NotificationText" />
+                <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
+                <ScalarProperty Name="RegID" ColumnName="RegID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IncidentManagement_WeeklyData">
             <EntityTypeMapping TypeName="TicketAutomationModel.IncidentManagement_WeeklyData">
               <MappingFragment StoreEntitySet="IncidentManagement_WeeklyData">
-                <ScalarProperty Name="RegID" ColumnName="RegID" />
-                <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
-                <ScalarProperty Name="NotificationText" ColumnName="NotificationText" />
-                <ScalarProperty Name="SeverityNumber" ColumnName="SeverityNumber" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SuspendReason" ColumnName="SuspendReason" />
-                <ScalarProperty Name="Assignee" ColumnName="Assignee" />
-                <ScalarProperty Name="AssigneeGroup" ColumnName="AssigneeGroup" />
-                <ScalarProperty Name="StatusTracking" ColumnName="StatusTracking" />
-                <ScalarProperty Name="ETR" ColumnName="ETR" />
-                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Finalized" ColumnName="Finalized" />
+                <ScalarProperty Name="HashBytes" ColumnName="HashBytes" />
+                <ScalarProperty Name="UpdatedIP" ColumnName="UpdatedIP" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
                 <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-                <ScalarProperty Name="MergeDateTime" ColumnName="MergeDateTime" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="ETR" ColumnName="ETR" />
+                <ScalarProperty Name="StatusTracking" ColumnName="StatusTracking" />
+                <ScalarProperty Name="AssigneeGroup" ColumnName="AssigneeGroup" />
+                <ScalarProperty Name="Assignee" ColumnName="Assignee" />
+                <ScalarProperty Name="SuspendReason" ColumnName="SuspendReason" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SeverityNumber" ColumnName="SeverityNumber" />
+                <ScalarProperty Name="NotificationText" ColumnName="NotificationText" />
+                <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
+                <ScalarProperty Name="PayrollDataId" ColumnName="PayrollDataId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

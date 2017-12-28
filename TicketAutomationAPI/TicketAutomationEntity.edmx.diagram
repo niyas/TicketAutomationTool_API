@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="395b044b13e84aea8d51276c8f2588d3" Name="Diagram1" ZoomLevel="96">
-        <EntityTypeShape EntityType="TicketAutomationModel.IncidentManagement_Data" Width="2.25" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TicketAutomationModel.IncidentManagement_WeeklyData" Width="2.625" PointX="5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketAutomationModel.IncidentManagement_Data" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TicketAutomationModel.IncidentManagement_WeeklyData" Width="1.5" PointX="2.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

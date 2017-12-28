@@ -11,28 +11,28 @@ namespace TicketAutomationAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TicketsController : ApiController
     {
-        public IEnumerable<IncidentManagement_Data> get()
+        public IEnumerable<IncidentManagement_WeeklyData> get()
         {
             using(TicketAutomationEntities entities = new TicketAutomationEntities())
             {
-                return entities.IncidentManagement_Data.ToList();
+                return entities.IncidentManagement_WeeklyData.ToList();
             }
         }
 
-        public IncidentManagement_Data get(int id)
+        public IncidentManagement_WeeklyData get(int id)
         {
             using (TicketAutomationEntities entities = new TicketAutomationEntities())
             {
-                return entities.IncidentManagement_Data.FirstOrDefault(e => e.PayrollDataId == id);
+                return entities.IncidentManagement_WeeklyData.FirstOrDefault(e => e.PayrollDataId == id);
             }
         }
 
         [HttpPatch]
-        public string Patch(int id, [FromBody]IncidentManagement_Data ticket)
+        public string Patch(int id, [FromBody]IncidentManagement_WeeklyData ticket)
         {
             using (TicketAutomationEntities entities = new TicketAutomationEntities())
             {
-                var entity = entities.IncidentManagement_Data.FirstOrDefault(e => e.PayrollDataId == id);
+                var entity = entities.IncidentManagement_WeeklyData.FirstOrDefault(e => e.PayrollDataId == id);
                 entity.Priority = ticket.Priority;
                 entity.ETR = ticket.ETR;
                 entity.StatusTracking = ticket.StatusTracking;
@@ -43,13 +43,13 @@ namespace TicketAutomationAPI.Controllers
 
         [Route("api/tickets/finalize")]
         [HttpPatch]
-        public string finalize([FromBody]IEnumerable<IncidentManagement_Data> tickets)
+        public string finalize([FromBody]IEnumerable<IncidentManagement_WeeklyData> tickets)
         {
-            foreach(IncidentManagement_Data ticket in tickets)
+            foreach(IncidentManagement_WeeklyData ticket in tickets)
             {
                 using (TicketAutomationEntities entities = new TicketAutomationEntities())
                 {
-                    var entity = entities.IncidentManagement_Data.FirstOrDefault(e =>e.PayrollDataId == ticket.PayrollDataId);
+                    var entity = entities.IncidentManagement_WeeklyData.FirstOrDefault(e =>e.PayrollDataId == ticket.PayrollDataId);
                     entity.Finalized = true;
                     entities.SaveChanges();
                 }
