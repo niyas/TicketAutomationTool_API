@@ -13,9 +13,17 @@ namespace TicketAutomationAPI.Controllers
     {
         public IEnumerable<IncidentManagement_WeeklyData> get()
         {
-            using(TicketAutomationEntities entities = new TicketAutomationEntities())
+            using (TicketAutomationEntities entities = new TicketAutomationEntities())
             {
                 return entities.IncidentManagement_WeeklyData.ToList();
+            }
+        }
+
+        public IEnumerable<IncidentManagement_Data> get(string userHash)
+        {
+            using(TicketAutomationEntities entities = new TicketAutomationEntities())
+            {
+                return entities.IncidentManagement_Data.Where(e => e.HashBytes == userHash);
             }
         }
 
