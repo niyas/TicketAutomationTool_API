@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Text;
 
 namespace TicketAutomationAPI.Controllers
 {
@@ -19,11 +20,12 @@ namespace TicketAutomationAPI.Controllers
             }
         }
 
-        public IEnumerable<IncidentManagement_Data> get(string userHash)
+        [Route("api/tickets/gettickets/{assignee}")]
+        public IEnumerable<IncidentManagement_WeeklyData> getTickets(string assignee)
         {
-            using(TicketAutomationEntities entities = new TicketAutomationEntities())
+            using (TicketAutomationEntities entities = new TicketAutomationEntities())
             {
-                return entities.IncidentManagement_Data.Where(e => e.HashBytes == userHash);
+                return entities.IncidentManagement_WeeklyData.Where(e => e.Assignee.ToLower().Replace(" ","") == assignee).ToList();
             }
         }
 
@@ -41,7 +43,10 @@ namespace TicketAutomationAPI.Controllers
             using (TicketAutomationEntities entities = new TicketAutomationEntities())
             {
                 var entity = entities.IncidentManagement_WeeklyData.FirstOrDefault(e => e.PayrollDataId == id);
+                entity.SeverityNumber = ticket.SeverityNumber;
+                entity.Status = ticket.Status;
                 entity.Priority = ticket.Priority;
+                entity.SuspendReason = ticket.SuspendReason;
                 entity.ETR = ticket.ETR;
                 entity.StatusTracking = ticket.StatusTracking;
                 entities.SaveChanges();
