@@ -11,11 +11,11 @@ namespace TicketAutomationAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TicketsController : ApiController
     {
-        public IEnumerable<IncidentManagement_Data> get()
+        public IEnumerable<IncidentManagement_Data> get(string userHash)
         {
             using(TicketAutomationEntities entities = new TicketAutomationEntities())
             {
-                return entities.IncidentManagement_Data.ToList();
+                return entities.IncidentManagement_Data.Where(e => e.HashBytes == userHash);
             }
         }
 
