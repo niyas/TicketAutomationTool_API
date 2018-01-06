@@ -30,5 +30,6 @@ namespace TicketAutomationAPI
         public string UpdatedIP { get; set; }
         public byte[] HashBytes { get; set; }
         public Nullable<bool> Finalized { get; set; }
+        public Nullable<bool> TBD { get; set; }
     }
 }

@@ -48,6 +48,7 @@ namespace TicketAutomationAPI.Controllers
                 entity.Priority = ticket.Priority;
                 entity.SuspendReason = ticket.SuspendReason;
                 entity.ETR = ticket.ETR;
+                entity.TBD = ticket.TBD;
                 entity.StatusTracking = ticket.StatusTracking;
                 entities.SaveChanges();
                 return "{success:'ticket updated successfully'}";

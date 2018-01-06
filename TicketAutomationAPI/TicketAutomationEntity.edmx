@@ -43,6 +43,7 @@
           <Property Name="UpdatedIP" Type="varchar" MaxLength="50" />
           <Property Name="HashBytes" Type="varbinary" MaxLength="300" />
           <Property Name="Finalized" Type="bit" />
+          <Property Name="TBD" Type="bit" />
         </EntityType>
         <EntityContainer Name="TicketAutomationModelStoreContainer">
           <EntitySet Name="IncidentManagement_Data" EntityType="Self.IncidentManagement_Data" Schema="dbo" store:Type="Tables" />
@@ -94,6 +95,7 @@
           <Property Name="UpdatedIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HashBytes" Type="Binary" MaxLength="300" FixedLength="false" />
           <Property Name="Finalized" Type="Boolean" />
+          <Property Name="TBD" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -123,6 +125,7 @@
           <EntitySetMapping Name="IncidentManagement_WeeklyData">
             <EntityTypeMapping TypeName="TicketAutomationModel.IncidentManagement_WeeklyData">
               <MappingFragment StoreEntitySet="IncidentManagement_WeeklyData">
+                <ScalarProperty Name="TBD" ColumnName="TBD" />
                 <ScalarProperty Name="Finalized" ColumnName="Finalized" />
                 <ScalarProperty Name="HashBytes" ColumnName="HashBytes" />
                 <ScalarProperty Name="UpdatedIP" ColumnName="UpdatedIP" />
