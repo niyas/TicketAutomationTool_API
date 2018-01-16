@@ -50,6 +50,7 @@ namespace TicketAutomationAPI.Controllers
                 entity.ETR = ticket.ETR;
                 entity.TBD = ticket.TBD;
                 entity.StatusTracking = ticket.StatusTracking;
+                entity.UpdatedDateTime = DateTime.Now;
                 entities.SaveChanges();
                 return "{success:'ticket updated successfully'}";
             }
