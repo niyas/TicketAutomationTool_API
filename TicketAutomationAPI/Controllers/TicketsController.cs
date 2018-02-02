@@ -20,6 +20,15 @@ namespace TicketAutomationAPI.Controllers
             }
         }
 
+
+        /**
+         * Get tickets based on assignee name
+         * 
+         * @method GET
+         * @params {String} assignee
+         * @returns {IncidentManagement_WeeklyData}
+         * 
+         */
         [Route("api/tickets/gettickets/{assignee}")]
         public IEnumerable<IncidentManagement_WeeklyData> getTickets(string assignee)
         {
@@ -29,6 +38,15 @@ namespace TicketAutomationAPI.Controllers
             }
         }
 
+
+        /**
+         * Get the ticket based on id
+         * 
+         * @method GET
+         * @params {Integer} id
+         * @return {IncidentManagement_WeeklyData}
+         * 
+         */
         public IncidentManagement_WeeklyData get(int id)
         {
             using (TicketAutomationEntities entities = new TicketAutomationEntities())
@@ -37,6 +55,15 @@ namespace TicketAutomationAPI.Controllers
             }
         }
 
+        /**
+         * Update the ticket data
+         * 
+         * @method PATCH
+         * @params {Integer} id
+         * @params {IncidentManagement_WeeklyData} ticket
+         * @return {String}
+         * 
+         */
         [HttpPatch]
         public string Patch(int id, [FromBody]IncidentManagement_WeeklyData ticket)
         {
@@ -56,6 +83,14 @@ namespace TicketAutomationAPI.Controllers
             }
         }
 
+        /**
+         * Update finalize flag for tickets
+         * 
+         * @method PATCH
+         * @patrams {IncidentManagement_WeeklyData} tickets
+         * @returns {String}
+         * 
+         */
         [Route("api/tickets/finalize")]
         [HttpPatch]
         public string finalize([FromBody]IEnumerable<IncidentManagement_WeeklyData> tickets)
